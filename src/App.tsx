@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import Home from './screens/home/HomeScreen';
+import './index.css';
 
 function App() {
   return (
