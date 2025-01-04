@@ -1,9 +1,5 @@
-echo "Running Prettier"
-prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
-git update-index --again
-
-echo "Running Linting"
-npm run lint
+echo "Running Linting and Formatting"
+npx lint-staged
 
 echo "Running Unit Test"
 npm run test

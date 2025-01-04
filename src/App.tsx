@@ -1,8 +1,8 @@
 import './index.css';
-import Home from './screens/home/HomeScreen';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import RoutesEnum from './routesEnum';
 import CreateBoardScreen from './screens/createBoard/CreateBoardScreen';
+import Home from './screens/home/HomeScreen';
 
 function App() {
   return (
