@@ -1,6 +1,6 @@
-import RoutesEnum from '@/routesEnum';
 import { PlusIcon } from '@heroicons/react/16/solid';
 import { Link } from 'react-router';
+import RoutesEnum from '@/routesEnum';
 
 const CreateBoardScreen = () => {
   return (

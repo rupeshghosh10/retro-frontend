@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
-import CreateBoardScreen from './CreateBoardScreen';
 import { MemoryRouter } from 'react-router';
+import { describe, expect, it } from 'vitest';
 import RoutesEnum from '@/routesEnum';
+import CreateBoardScreen from './CreateBoardScreen';
 
 describe('CreateBoardScreen', () => {
   it('should render correctly', () => {
