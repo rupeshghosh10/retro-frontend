@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 const Home = () => {
   return (
-    <div className="h-screen w-screen flex flex-col justify-center items-center">
+    <div className="flex h-screen w-screen flex-col items-center justify-center">
       <div className="prose">
         <h1 className="text-5xl">Welcome to Retro App</h1>
         <p className="text-center text-2xl">

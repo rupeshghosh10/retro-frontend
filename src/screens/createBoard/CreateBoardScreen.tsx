@@ -4,25 +4,25 @@ import { Link } from 'react-router';
 
 const CreateBoardScreen = () => {
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
+    <div className="flex h-screen w-screen items-center justify-center">
       <div className="w-1/3">
         <div className="prose">
           <h1>Create a New Board</h1>
           <p className="text-xl">Set up your retro board and share it with your team.</p>
         </div>
-        <div className="flex flex-col mt-10">
-          <label htmlFor="boardName" className="font-medium text-lg pl-1">
+        <div className="mt-10 flex flex-col">
+          <label htmlFor="boardName" className="pl-1 text-lg font-medium">
             Board Name
           </label>
           <input
             id="boardName"
             name="boardName"
             type="text"
-            className="input input-bordered w-full mt-2"
+            className="input input-bordered mt-2 w-full"
             placeholder="eg. Sprint Retrospective #4"
           />
         </div>
-        <div className="flex justify-between mt-14">
+        <div className="mt-14 flex justify-between">
           <Link to={RoutesEnum.Home} className="btn btn-ghost">
             Cancel
           </Link>
