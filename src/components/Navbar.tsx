@@ -1,3 +1,4 @@
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router';
 import RoutesEnum from '@/routesEnum';
 
@@ -18,11 +19,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed hidden h-screen w-52 pl-3 pt-4 sm:flex sm:flex-col">
+    <nav className="fixed hidden h-screen w-40 pl-3 pt-4 sm:flex sm:flex-col">
       <div className="prose">
         <h1 className="text-2xl">Retro App</h1>
       </div>
-      <div className="flex-1 pt-5">
+      <div className="pt-5">
         <ul>
           {links.map(link => (
             <li key={link.name}>
@@ -32,6 +33,16 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="mt-auto flex items-center justify-between pb-4">
+        <p className="pb-1 pl-2 font-semibold">Theme</p>
+        <button data-toggle-theme="dracula,garden" data-act-class="ACTIVECLASS">
+          <label className="swap swap-rotate">
+            <input type="checkbox" className="theme-controller" value="garden" />
+            <SunIcon className="swap-off h-8 w-8" />
+            <MoonIcon className="swap-on h-8 w-8" />
+          </label>
+        </button>
       </div>
     </nav>
   );
