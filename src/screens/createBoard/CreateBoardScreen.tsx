@@ -5,7 +5,7 @@ import RoutesEnum from '@/routesEnum';
 const CreateBoardScreen = () => {
   return (
     <div className="flex h-screen w-screen items-center justify-center">
-      <div className="w-1/3">
+      <div className="w-3/4 sm:w-1/3">
         <div className="prose">
           <h1>Create a New Board</h1>
           <p className="text-xl">Set up your retro board and share it with your team.</p>
@@ -22,7 +22,7 @@ const CreateBoardScreen = () => {
             placeholder="eg. Sprint Retrospective #4"
           />
         </div>
-        <div className="mt-14 flex justify-between">
+        <div className="mt-14 flex flex-col-reverse items-center justify-between gap-3 sm:flex-row sm:gap-0">
           <Link to={RoutesEnum.Home} className="btn btn-ghost">
             Cancel
           </Link>
