@@ -7,11 +7,11 @@ import CreateBoardScreen from './screens/createBoard/CreateBoardScreen';
 import Home from './screens/home/HomeScreen';
 
 function App() {
-  const toggleTheme = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <BrowserRouter>
-      <Navbar toggleTheme={toggleTheme} />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Routes>
         <Route path={RoutesEnum.Home} element={<Home />} />
         <Route path={RoutesEnum.CreateBoard} element={<CreateBoardScreen />} />

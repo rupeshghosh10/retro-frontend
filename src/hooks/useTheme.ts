@@ -4,11 +4,18 @@ const useTheme = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') ?? 'garden');
 
   useEffect(() => {
-    document.querySelector('html')?.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    const htmlTag = document.querySelector('html')!;
+    if (htmlTag.getAttribute('data-theme') !== theme) {
+      htmlTag.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
   }, [theme]);
 
-  return () => setTheme(currentTheme => (currentTheme === 'garden' ? 'dracula' : 'garden'));
+  const toggleTheme = () => {
+    setTheme(currentTheme => (currentTheme === 'garden' ? 'dracula' : 'garden'));
+  };
+
+  return { theme, toggleTheme };
 };
 
 export default useTheme;

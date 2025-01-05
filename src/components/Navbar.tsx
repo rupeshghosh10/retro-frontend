@@ -3,10 +3,11 @@ import { Link } from 'react-router';
 import RoutesEnum from '@/routesEnum';
 
 interface NavbarProps {
+  theme: string;
   toggleTheme: () => void;
 }
 
-const Navbar = ({ toggleTheme }: NavbarProps) => {
+const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
   const links = [
     {
       name: 'Home',
@@ -40,13 +41,8 @@ const Navbar = ({ toggleTheme }: NavbarProps) => {
       </div>
       <div className="mt-auto flex items-center justify-between px-3 pb-4">
         <p className="pb-1 font-semibold">Theme</p>
-        <label className="swap swap-rotate">
-          <input
-            type="checkbox"
-            className="theme-controller"
-            value="garden"
-            onClick={toggleTheme}
-          />
+        <label className="swap">
+          <input type="checkbox" checked={theme === 'garden'} onClick={toggleTheme} />
           <SunIcon className="swap-on h-6 w-6" />
           <MoonIcon className="swap-off h-6 w-6" />
         </label>
