@@ -2,7 +2,11 @@ import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router';
 import RoutesEnum from '@/routesEnum';
 
-const Navbar = () => {
+interface NavbarProps {
+  toggleTheme: () => void;
+}
+
+const Navbar = ({ toggleTheme }: NavbarProps) => {
   const links = [
     {
       name: 'Home',
@@ -36,13 +40,16 @@ const Navbar = () => {
       </div>
       <div className="mt-auto flex items-center justify-between px-3 pb-4">
         <p className="pb-1 font-semibold">Theme</p>
-        <button data-toggle-theme="dracula,garden" data-act-class="ACTIVECLASS">
-          <label className="swap swap-rotate">
-            <input type="checkbox" className="theme-controller" value="garden" />
-            <SunIcon className="swap-off h-6 w-6" />
-            <MoonIcon className="swap-on h-6 w-6" />
-          </label>
-        </button>
+        <label className="swap swap-rotate">
+          <input
+            type="checkbox"
+            className="theme-controller"
+            value="garden"
+            onClick={toggleTheme}
+          />
+          <SunIcon className="swap-on h-6 w-6" />
+          <MoonIcon className="swap-off h-6 w-6" />
+        </label>
       </div>
     </nav>
   );

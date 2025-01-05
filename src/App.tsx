@@ -1,20 +1,17 @@
 import './index.css';
-import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
-import { themeChange } from 'theme-change';
 import Navbar from './components/Navbar';
+import useTheme from './hooks/useTheme';
 import RoutesEnum from './routesEnum';
 import CreateBoardScreen from './screens/createBoard/CreateBoardScreen';
 import Home from './screens/home/HomeScreen';
 
 function App() {
-  useEffect(() => {
-    themeChange(false);
-  }, []);
+  const toggleTheme = useTheme();
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar toggleTheme={toggleTheme} />
       <Routes>
         <Route path={RoutesEnum.Home} element={<Home />} />
         <Route path={RoutesEnum.CreateBoard} element={<CreateBoardScreen />} />
