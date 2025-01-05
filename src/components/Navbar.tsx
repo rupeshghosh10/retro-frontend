@@ -34,13 +34,13 @@ const Navbar = () => {
           ))}
         </ul>
       </div>
-      <div className="mt-auto flex items-center justify-between pb-4">
-        <p className="pb-1 pl-2 font-semibold">Theme</p>
+      <div className="mt-auto flex items-center justify-between px-3 pb-4">
+        <p className="pb-1 font-semibold">Theme</p>
         <button data-toggle-theme="dracula,garden" data-act-class="ACTIVECLASS">
           <label className="swap swap-rotate">
             <input type="checkbox" className="theme-controller" value="garden" />
-            <SunIcon className="swap-off h-8 w-8" />
-            <MoonIcon className="swap-on h-8 w-8" />
+            <SunIcon className="swap-off h-6 w-6" />
+            <MoonIcon className="swap-on h-6 w-6" />
           </label>
         </button>
       </div>
