@@ -6,6 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig as defineVitestConfig } from 'vitest/config';
 
 const viteConfig = defineViteConfig({
+  base: '/retro-frontend',
   plugins: [react(), tsconfigPaths()],
 });
 

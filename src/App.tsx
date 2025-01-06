@@ -10,7 +10,7 @@ function App() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/retro-frontend">
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Routes>
         <Route path={RoutesEnum.Home} element={<Home />} />

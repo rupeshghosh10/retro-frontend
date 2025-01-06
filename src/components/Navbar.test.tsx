@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import RoutesEnum from '@/routesEnum';
 import Navbar from './Navbar';
 
@@ -8,7 +8,7 @@ describe('Navbar Component', () => {
   it('renders the correct links', () => {
     render(
       <MemoryRouter>
-        <Navbar />
+        <Navbar theme="" toggleTheme={vi.fn()} />
       </MemoryRouter>
     );
 
