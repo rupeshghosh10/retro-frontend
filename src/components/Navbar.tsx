@@ -1,4 +1,5 @@
-import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, MoonIcon, SunIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 import { Link } from 'react-router';
 import RoutesEnum from '@/routesEnum';
 
@@ -8,6 +9,8 @@ interface NavbarProps {
 }
 
 const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const links = [
     {
       name: 'Home',
@@ -24,11 +27,22 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
   ];
 
   return (
-    <nav className="fixed hidden h-screen w-40 pl-3 pt-4 sm:flex sm:flex-col">
-      <div className="prose">
+    <nav className="fixed left-0 top-0 h-screen w-36 sm:flex sm:flex-col sm:pl-3 sm:pt-4">
+      <label className="btn btn-circle swap swap-rotate ml-1 mt-1 sm:hidden">
+        <input
+          checked={isMobileMenuOpen}
+          type="checkbox"
+          onClick={() => setIsMobileMenuOpen(x => !x)}
+        />
+        <Bars3Icon className="swap-off h-6 w-6" />
+        <XMarkIcon className="swap-on h-6 w-6" />
+      </label>
+      <div className="prose hidden sm:block">
         <h1 className="text-2xl">Retro App</h1>
       </div>
-      <div className="pt-5">
+      <div
+        className={`${isMobileMenuOpen ? 'block' : 'hidden'} w-screen bg-secondary-content sm:block sm:w-auto sm:bg-inherit sm:pt-5`}
+      >
         <ul>
           {links.map(link => (
             <li key={link.name}>
@@ -39,8 +53,8 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
           ))}
         </ul>
       </div>
-      <div className="mt-auto flex items-center justify-between px-3 pb-4">
-        <p className="pb-1 font-semibold">Theme</p>
+      <div className="mt-auto hidden items-center justify-between px-3 pb-4 sm:flex">
+        <p className="pb-1 text-sm font-semibold">Theme</p>
         <label className="swap">
           <input type="checkbox" checked={theme === 'garden'} onClick={toggleTheme} />
           <SunIcon className="swap-on h-6 w-6" />
