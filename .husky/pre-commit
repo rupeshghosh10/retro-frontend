@@ -1,0 +1,5 @@
+echo "Running Linting and Formatting"
+npx lint-staged
+
+echo "Running Unit Test"
+npm run test
