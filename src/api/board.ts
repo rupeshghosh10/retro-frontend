@@ -2,8 +2,8 @@ import apiClient from './client/apiClient';
 import { CreateBoardResponse } from './responses/CreateBoardResponse';
 import { JoinBoardResponse } from './responses/JoinBoardResponse';
 
-export const createBoard = (name: string, creatorName: string) => {
-  return apiClient.post<CreateBoardResponse>('/api/boards', null, {
+export const createBoard = async (name: string, creatorName: string) => {
+  return await apiClient.post<CreateBoardResponse>('/api/boards', null, {
     params: {
       name,
       creatorName,
@@ -11,8 +11,8 @@ export const createBoard = (name: string, creatorName: string) => {
   });
 };
 
-export const joinBoard = (boardId: string, userName: string) => {
-  return apiClient.post<JoinBoardResponse>(`/api/board/${boardId}/join`, null, {
+export const joinBoard = async (boardId: string, userName: string) => {
+  return await apiClient.post<JoinBoardResponse>(`/api/board/${boardId}/join`, null, {
     params: {
       userName,
     },
