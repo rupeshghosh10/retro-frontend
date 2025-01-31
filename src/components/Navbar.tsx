@@ -22,7 +22,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
     },
     {
       name: 'Join',
-      to: '',
+      to: RoutesEnum.JoinBoard,
     },
   ];
 

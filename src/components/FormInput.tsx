@@ -6,7 +6,7 @@ interface InputProps {
   onChange: (value: string) => void;
 }
 
-const Input = ({ id, label, placeholder, value, onChange }: InputProps) => {
+const FormInput = ({ id, label, placeholder, value, onChange }: InputProps) => {
   return (
     <div className="mt-10 flex flex-col">
       <label htmlFor="boardName" className="pl-1 text-lg font-medium">
@@ -25,4 +25,4 @@ const Input = ({ id, label, placeholder, value, onChange }: InputProps) => {
   );
 };
 
-export default Input;
+export default FormInput;

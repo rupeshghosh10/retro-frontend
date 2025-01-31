@@ -1,13 +1,3 @@
-enum ROLE {
-  ADMIN = 'ADMIN',
-  USER = 'USER',
-}
-
-enum STATUS {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
-}
-
 export interface JoinBoardResponse {
   boardUser: {
     id: number;
@@ -23,8 +13,8 @@ export interface JoinBoardResponse {
       name: string;
       createdAt: string;
     };
-    role: ROLE;
-    status: STATUS;
+    role: 'ADMIN' | 'USER';
+    status: 'ACTIVE' | 'INACTIVE';
     joinedAt: string;
     lastActiveAt: string;
   };

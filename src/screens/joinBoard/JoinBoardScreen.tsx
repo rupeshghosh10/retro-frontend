@@ -1,48 +1,38 @@
-import { PlusIcon } from '@heroicons/react/16/solid';
-import { useState } from 'react';
+import { UserGroupIcon } from '@heroicons/react/16/solid';
 import { Link } from 'react-router';
-import { createBoard } from '@/api/board';
 import FormInput from '@/components/FormInput';
 import FormTitle from '@/components/FormTitle';
 import RoutesEnum from '@/routesEnum';
 
-const CreateBoardScreen = () => {
-  const [boardName, setBoardName] = useState('');
-  const [userName, setUserName] = useState('');
-
-  const handleCreateBoard = async () => {
-    const data = await createBoard(boardName, userName);
-    console.log(data);
-  };
-
+const JoinBoardScreen = () => {
   return (
     <div className="flex h-screen w-screen items-center justify-center">
       <div className="w-3/4 sm:w-1/3">
         <FormTitle
-          title="Create a New Board"
-          subtitle="Set up your retro board and share it with your team."
+          title="Join a Board"
+          subtitle="Enter the board code shared with you to join the session."
         />
         <FormInput
           id="boardName"
           label="Board Name"
           placeholder="eg. Sprint Retrospective #4"
-          value={boardName}
-          onChange={setBoardName}
+          value={''}
+          onChange={() => {}}
         />
         <FormInput
           id="userName"
           label="Your Nickname"
           placeholder="eg. James"
-          value={userName}
-          onChange={setUserName}
+          value={''}
+          onChange={() => {}}
         />
         <div className="mt-14 flex flex-col-reverse items-center justify-between gap-3 sm:flex-row sm:gap-0">
           <Link to={RoutesEnum.Home} className="btn btn-ghost">
             Cancel
           </Link>
-          <button className="btn btn-primary" onClick={handleCreateBoard}>
-            <PlusIcon className="h-7 w-7" />
-            <span>Create Board</span>
+          <button className="btn btn-primary" onClick={() => {}}>
+            <UserGroupIcon className="h-7 w-7" />
+            <span>Join Board</span>
           </button>
         </div>
       </div>
@@ -50,4 +40,4 @@ const CreateBoardScreen = () => {
   );
 };
 
-export default CreateBoardScreen;
+export default JoinBoardScreen;

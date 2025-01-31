@@ -23,6 +23,6 @@ describe('Navbar Component', () => {
     expect(links[1]).toHaveAttribute('href', RoutesEnum.CreateBoard);
 
     expect(links[2]).toHaveTextContent('Join');
-    expect(links[2]).toHaveAttribute('href', '/');
+    expect(links[2]).toHaveAttribute('href', RoutesEnum.JoinBoard);
   });
 });

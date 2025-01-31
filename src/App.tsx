@@ -5,6 +5,7 @@ import useTheme from './hooks/useTheme';
 import RoutesEnum from './routesEnum';
 import CreateBoardScreen from './screens/createBoard/CreateBoardScreen';
 import Home from './screens/home/HomeScreen';
+import JoinBoardScreen from './screens/joinBoard/JoinBoardScreen';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path={RoutesEnum.Home} element={<Home />} />
         <Route path={RoutesEnum.CreateBoard} element={<CreateBoardScreen />} />
+        <Route path={RoutesEnum.JoinBoard} element={<JoinBoardScreen />} />
       </Routes>
     </BrowserRouter>
   );

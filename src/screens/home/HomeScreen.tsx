@@ -16,10 +16,10 @@ const Home = () => {
           <PlusIcon className="h-7 w-7" />
           <span>Create Board</span>
         </Link>
-        <button className="btn btn-primary btn-md sm:btn-lg">
+        <Link to={RoutesEnum.JoinBoard} className="btn btn-primary btn-md sm:btn-lg">
           <UserGroupIcon className="h-7 w-7" />
           <span>Join a Board</span>
-        </button>
+        </Link>
       </div>
     </div>
   );
