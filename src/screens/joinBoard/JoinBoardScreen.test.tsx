@@ -38,14 +38,14 @@ describe('JoinBoardScreen', () => {
       </MemoryRouter>
     );
 
-    await userEvent.type(screen.getByLabelText('Board Name'), 'Retro #3');
+    await userEvent.type(screen.getByLabelText('Board Code'), 'ABC123');
     await userEvent.type(screen.getByLabelText('Your Nickname'), 'Sam');
 
     const joinButton = screen.getByRole('button', { name: /join board/i });
     await userEvent.click(joinButton);
 
     await waitFor(() => {
-      expect(joinBoard).toHaveBeenCalledWith('Retro #3', 'Sam');
+      expect(joinBoard).toHaveBeenCalledWith('ABC123', 'Sam');
       expect(mockNavigate).toHaveBeenCalledWith(RoutesEnum.Board);
     });
   });

@@ -55,7 +55,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
       </div>
       <div className="mt-auto hidden items-center justify-between px-3 pb-4 sm:flex">
         <p className="pb-1 text-sm font-semibold">Theme</p>
-        <label className="swap">
+        <label className="swap pb-1">
           <input type="checkbox" defaultChecked={theme === 'garden'} onClick={toggleTheme} />
           <SunIcon className="swap-on h-6 w-6" />
           <MoonIcon className="swap-off h-6 w-6" />

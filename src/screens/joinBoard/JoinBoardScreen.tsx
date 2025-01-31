@@ -25,8 +25,8 @@ const JoinBoardScreen = () => {
           subtitle="Enter the board code shared with you to join the session."
         />
         <FormInput
-          id="boardName"
-          label="Board Name"
+          id="boardCode"
+          label="Board Code"
           placeholder="eg. Sprint Retrospective #4"
           value={boardCode}
           onChange={setBoardCode}
