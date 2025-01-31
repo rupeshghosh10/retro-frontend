@@ -9,7 +9,7 @@ interface InputProps {
 const FormInput = ({ id, label, placeholder, value, onChange }: InputProps) => {
   return (
     <div className="mt-10 flex flex-col">
-      <label htmlFor="boardName" className="pl-1 text-lg font-medium">
+      <label htmlFor={id} className="pl-1 text-lg font-medium">
         {label}
       </label>
       <input

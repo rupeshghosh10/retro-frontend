@@ -1,6 +1,6 @@
 import { PlusIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { createBoard } from '@/api/board';
 import FormInput from '@/components/FormInput';
 import FormTitle from '@/components/FormTitle';
@@ -9,10 +9,12 @@ import RoutesEnum from '@/routesEnum';
 const CreateBoardScreen = () => {
   const [boardName, setBoardName] = useState('');
   const [userName, setUserName] = useState('');
+  const navigate = useNavigate();
 
   const handleCreateBoard = async () => {
     const data = await createBoard(boardName, userName);
     console.log(data);
+    navigate(RoutesEnum.Board);
   };
 
   return (

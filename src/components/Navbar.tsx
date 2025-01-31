@@ -30,7 +30,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
     <nav className="fixed left-0 top-0 h-screen w-36 sm:flex sm:flex-col sm:pl-3 sm:pt-4">
       <label className="btn btn-circle swap swap-rotate ml-1 mt-1 sm:hidden">
         <input
-          checked={isMobileMenuOpen}
+          defaultChecked={isMobileMenuOpen}
           type="checkbox"
           onClick={() => setIsMobileMenuOpen(x => !x)}
         />
@@ -56,7 +56,7 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
       <div className="mt-auto hidden items-center justify-between px-3 pb-4 sm:flex">
         <p className="pb-1 text-sm font-semibold">Theme</p>
         <label className="swap">
-          <input type="checkbox" checked={theme === 'garden'} onClick={toggleTheme} />
+          <input type="checkbox" defaultChecked={theme === 'garden'} onClick={toggleTheme} />
           <SunIcon className="swap-on h-6 w-6" />
           <MoonIcon className="swap-off h-6 w-6" />
         </label>

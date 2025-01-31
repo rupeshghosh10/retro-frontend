@@ -1,6 +1,6 @@
 import { UserGroupIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { joinBoard } from '@/api/board';
 import FormInput from '@/components/FormInput';
 import FormTitle from '@/components/FormTitle';
@@ -9,10 +9,12 @@ import RoutesEnum from '@/routesEnum';
 const JoinBoardScreen = () => {
   const [boardCode, setBoardCode] = useState('');
   const [userName, setUserName] = useState('');
+  const navigate = useNavigate();
 
   const handleJoinBoard = async () => {
     const data = await joinBoard(boardCode, userName);
     console.log(data);
+    navigate(RoutesEnum.Board);
   };
 
   return (
