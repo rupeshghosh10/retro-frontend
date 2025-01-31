@@ -16,5 +16,10 @@ describe('HomeScreen', () => {
       'href',
       RoutesEnum.CreateBoard
     );
+
+    expect(screen.getByRole('link', { name: /Join a Board/i })).toHaveAttribute(
+      'href',
+      RoutesEnum.JoinBoard
+    );
   });
 });
