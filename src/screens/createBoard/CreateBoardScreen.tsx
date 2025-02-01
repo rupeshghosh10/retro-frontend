@@ -5,15 +5,17 @@ import { createBoard } from '@/api/board';
 import FormInput from '@/components/FormInput';
 import FormTitle from '@/components/FormTitle';
 import RoutesEnum from '@/routesEnum';
+import useBoardStore from '@/store/useBoardStore';
 
 const CreateBoardScreen = () => {
   const [boardName, setBoardName] = useState('');
-  const [userName, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
+  const setBoard = useBoardStore(x => x.setBoard);
 
   const handleCreateBoard = async () => {
-    const data = await createBoard(boardName, userName);
-    console.log(data);
+    const data = await createBoard(boardName, username);
+    setBoard(username, data.publicId, boardName);
     navigate(RoutesEnum.Board);
   };
 
@@ -35,8 +37,8 @@ const CreateBoardScreen = () => {
           id="userName"
           label="Your Nickname"
           placeholder="eg. James"
-          value={userName}
-          onChange={setUserName}
+          value={username}
+          onChange={setUsername}
         />
         <div className="mt-14 flex flex-col-reverse items-center justify-between gap-3 sm:flex-row sm:gap-0">
           <Link to={RoutesEnum.Home} className="btn btn-ghost">
