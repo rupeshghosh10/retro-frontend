@@ -1,12 +1,10 @@
-import { useShallow } from 'zustand/shallow';
-import useBoardStore from '@/store/useBoardStore';
+// import { useShallow } from 'zustand/shallow';
+// import useBoardStore from '@/store/useBoardStore';
 import Column from './components/Column';
 
 const BoardScreen = () => {
-  const [boardId, boardName, username] = useBoardStore(
-    useShallow(x => [x.boardId, x.boardName, x.username])
-  );
-  console.log([boardId, boardName, username]);
+  const [boardId, boardName] = ['12345', 'Test Name'];
+  //useBoardStore(useShallow(x => [x.boardId, x.boardName]));
 
   const columns = [
     { title: 'What went well?', type: 'success' },
@@ -16,7 +14,7 @@ const BoardScreen = () => {
   ];
 
   return (
-    <div className="ml-60 mr-32 flex h-screen pt-5">
+    <div className="ml-52 mr-24 flex h-screen pt-5">
       <div className="w-full">
         <div className="prose">
           <h1>{boardName}</h1>
@@ -24,9 +22,9 @@ const BoardScreen = () => {
             Board Code: <strong>{boardId}</strong>
           </p>
         </div>
-        <div className="flex justify-between gap-8 pt-8">
+        <div className="flex justify-between gap-4 pt-8">
           {columns.map(x => (
-            <Column title={x.title} type={x.type} />
+            <Column key={x.type} title={x.title} type={x.type} />
           ))}
         </div>
       </div>
