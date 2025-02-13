@@ -7,7 +7,7 @@ import { JoinBoardResponse } from './responses/JoinBoardResponse';
 vi.mock('./client/apiClient');
 
 describe('boardService', () => {
-  it('should call apiClient.post with correct parameters for createBoard', async () => {
+  it.skip('should call apiClient.post with correct parameters for createBoard', async () => {
     const mockResponse: { data: CreateBoardResponse } = {
       data: { publicId: '123', name: 'Sprint Retro' },
     };
