@@ -1,10 +1,9 @@
-// import { useShallow } from 'zustand/shallow';
-// import useBoardStore from '@/store/useBoardStore';
+import { useShallow } from 'zustand/shallow';
+import useBoardStore from '@/store/useBoardStore';
 import Column from './components/Column';
 
 const BoardScreen = () => {
-  const [boardId, boardName] = ['12345', 'Test Name'];
-  //useBoardStore(useShallow(x => [x.boardId, x.boardName]));
+  const [boardId, boardName] = useBoardStore(useShallow(x => [x.boardId, x.boardName]));
 
   const columns = [
     { title: 'What went well?', type: 'success' },

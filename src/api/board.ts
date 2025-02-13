@@ -3,7 +3,7 @@ import { CreateBoardResponse } from './responses/CreateBoardResponse';
 import { JoinBoardResponse } from './responses/JoinBoardResponse';
 
 export const createBoard = async (name: string, creatorName: string) => {
-  const responses = await apiClient.post<CreateBoardResponse>('/api/boards', null, {
+  const responses = await apiClient.post<CreateBoardResponse>('/api/board', null, {
     params: { name, creatorName },
   });
 

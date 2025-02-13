@@ -1,3 +1,7 @@
+import { useState } from 'react';
+import { useShallow } from 'zustand/shallow';
+import apiClient from '@/api/client/apiClient';
+import useBoardStore from '@/store/useBoardStore';
 import Card from './Card';
 
 interface ColumnProps {
@@ -6,12 +10,19 @@ interface ColumnProps {
 }
 
 const Column = ({ title, type }: ColumnProps) => {
-  const cards = [
+  const [cards] = useState([
     {
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       user: 'Test',
     },
-  ];
+  ]);
+  const [boardId, userName] = useBoardStore(useShallow(x => [x.boardId, x.username]));
+
+  const handleAdd = async () => {
+    await apiClient.post(`/api/board/${boardId}/note?userName=${userName}`, {
+      cardContent: 'New Card Content',
+    });
+  };
 
   const getBgColor = () => {
     switch (type) {
@@ -32,6 +43,9 @@ const Column = ({ title, type }: ColumnProps) => {
       {cards.map((x, i) => (
         <Card key={x.text + i} text={x.text} username={x.user} />
       ))}
+      <button className="btn btn-primary" onClick={handleAdd}>
+        Add
+      </button>
     </div>
   );
 };
