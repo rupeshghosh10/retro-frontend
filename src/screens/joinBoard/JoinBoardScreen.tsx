@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router';
 import { joinBoard } from '@/api/board';
 import FormInput from '@/components/FormInput';
 import FormTitle from '@/components/FormTitle';
-import RoutesEnum from '@/routesEnum';
+import RoutesEnum from '@/routes/routesEnum';
 import useBoardStore from '@/store/useBoardStore';
 
 const JoinBoardScreen = () => {
@@ -16,7 +16,7 @@ const JoinBoardScreen = () => {
   const handleJoinBoard = async () => {
     const data = await joinBoard(boardCode, username);
     setBoard(username, boardCode, data?.boardUser?.board?.name);
-    navigate(RoutesEnum.Board);
+    navigate(RoutesEnum.Board.replace(':boardId', boardCode));
   };
 
   return (

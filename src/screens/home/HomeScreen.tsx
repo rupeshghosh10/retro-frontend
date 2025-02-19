@@ -1,6 +1,6 @@
 import { PlusIcon, UserGroupIcon } from '@heroicons/react/16/solid';
 import { Link } from 'react-router';
-import RoutesEnum from '@/routesEnum';
+import RoutesEnum from '@/routes/routesEnum';
 
 const Home = () => {
   return (

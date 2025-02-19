@@ -1,7 +1,7 @@
 import { Bars3Icon, MoonIcon, SunIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { Link } from 'react-router';
-import RoutesEnum from '@/routesEnum';
+import RoutesEnum from '@/routes/routesEnum';
 
 interface NavbarProps {
   theme: string;

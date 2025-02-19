@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
-import RoutesEnum from '@/routesEnum';
+import RoutesEnum from '@/routes/routesEnum';
 import Navbar from './Navbar';
 
 describe('Navbar Component', () => {

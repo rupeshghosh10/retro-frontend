@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter, useNavigate } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import { createBoard } from '@/api/board';
-import RoutesEnum from '@/routesEnum';
+import RoutesEnum from '@/routes/routesEnum';
 import CreateBoardScreen from './CreateBoardScreen';
 
 describe('CreateBoardScreen', () => {

@@ -2,7 +2,7 @@ enum RoutesEnum {
   Home = '/',
   CreateBoard = '/create',
   JoinBoard = '/join',
-  Board = '/board',
+  Board = '/board/:boardId',
 }
 
 export default RoutesEnum;

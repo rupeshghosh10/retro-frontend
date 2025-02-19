@@ -4,7 +4,7 @@ import { MemoryRouter, useNavigate } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import { joinBoard } from '@/api/board';
 import { JoinBoardResponse } from '@/api/responses/JoinBoardResponse';
-import RoutesEnum from '@/routesEnum';
+import RoutesEnum from '@/routes/routesEnum';
 import JoinBoardScreen from './JoinBoardScreen';
 
 describe('JoinBoardScreen', () => {
