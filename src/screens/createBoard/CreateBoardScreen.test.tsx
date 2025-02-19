@@ -45,7 +45,7 @@ describe('CreateBoardScreen', () => {
 
     await waitFor(() => {
       expect(createBoard).toHaveBeenCalledWith('Retro #2', 'Jackie');
-      expect(mockNavigate).toHaveBeenCalledWith(RoutesEnum.Board);
+      expect(mockNavigate).toHaveBeenCalledWith(RoutesEnum.Board.replace(':boardId', '123'));
     });
   });
 });

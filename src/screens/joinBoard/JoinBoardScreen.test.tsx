@@ -46,7 +46,7 @@ describe('JoinBoardScreen', () => {
 
     await waitFor(() => {
       expect(joinBoard).toHaveBeenCalledWith('ABC123', 'Sam');
-      expect(mockNavigate).toHaveBeenCalledWith(RoutesEnum.Board);
+      expect(mockNavigate).toHaveBeenCalledWith(RoutesEnum.Board.replace(':boardId', 'ABC123'));
     });
   });
 });
