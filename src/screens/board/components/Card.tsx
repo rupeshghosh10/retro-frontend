@@ -5,7 +5,7 @@ interface CardProps {
 
 const Card = ({ text, username }: CardProps) => {
   return (
-    <div className="rounded border bg-primary-content p-2">
+    <div className="rounded-lg border bg-primary-content p-2">
       <p>{text}</p>
       <p className="mt-2 text-sm">{username}</p>
     </div>

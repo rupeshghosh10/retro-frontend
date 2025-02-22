@@ -13,6 +13,7 @@ interface ColumnProps {
 
 const Column = ({ title, type, cards }: ColumnProps) => {
   const [boardId, userName] = useBoardStore(useShallow(x => [x.boardId, x.username]));
+
   const handleAdd = async (content: string) => {
     await apiClient.post(`/api/board/${boardId}/note?userName=${userName}`, {
       cardContent: content,
@@ -33,14 +34,12 @@ const Column = ({ title, type, cards }: ColumnProps) => {
   };
 
   return (
-    <div
-      className={`flex min-h-96 w-full flex-col gap-2 rounded-xl bg-opacity-25 p-4 ${getBgColor()}`}
-    >
+    <div className={`flex w-full flex-col gap-2 rounded-xl bg-opacity-20 p-4 ${getBgColor()}`}>
       <p className="mb-5 text-center text-xl">{title}</p>
       {cards.map((x, i) => (
         <Card key={x.text + i} text={x.text} username={x.user ?? ''} />
       ))}
-      <AddCard onAdd={handleAdd} />
+      <AddCard onAdd={handleAdd} type={type} />
     </div>
   );
 };

@@ -14,7 +14,7 @@ export interface CardContent {
 const Board = () => {
   const [boardId, boardName] = useBoardStore(useShallow(x => [x.boardId, x.boardName]));
   const [cards, setCard] = useState<CardContent[]>([]);
-  const [showSnackbar, setShowSnackbar] = useState(true);
+  const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
   useSubscription('/topic/messages', message => setCard(x => [...x, { text: message.body }]));
@@ -41,7 +41,7 @@ const Board = () => {
         isVisible={showSnackbar}
         onClose={() => setShowSnackbar(false)}
       />
-      <div className="w-full">
+      <div className="h-full w-full">
         <div className="flex items-center justify-between">
           <div className="prose">
             <h1>{boardName}</h1>
@@ -51,7 +51,7 @@ const Board = () => {
           </div>
           <Timer onTimerEnd={showTimerEndMessage} />
         </div>
-        <div className="flex justify-between gap-4 pt-8">
+        <div className="flex h-[calc(100vh-8rem)] justify-between gap-4 pt-8">
           {columns.map(x => (
             <Column key={x.type} title={x.title} type={x.type} cards={cards} />
           ))}
