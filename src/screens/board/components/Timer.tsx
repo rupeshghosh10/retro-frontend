@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSubscription } from 'react-stomp-hooks';
 import { useShallow } from 'zustand/shallow';
-import { getTimerState, startTimer, stopTimer, TimerState } from '@/api/board';
+import { getTimerState, startTimer, stopTimer } from '@/api/board';
+import { TimerResponse } from '@/api/responses/TimerResponse';
 import useBoardStore from '@/store/useBoardStore';
 
 interface TimerProps {
@@ -10,7 +11,7 @@ interface TimerProps {
 
 const Timer = ({ onTimerEnd }: TimerProps) => {
   const [boardId] = useBoardStore(useShallow(x => [x.boardId]));
-  const [timerState, setTimerState] = useState<TimerState>({
+  const [timerState, setTimerState] = useState<TimerResponse>({
     status: 'NO_TIMER',
     remainingSeconds: 0,
     formattedTime: '00:00',
@@ -33,7 +34,7 @@ const Timer = ({ onTimerEnd }: TimerProps) => {
 
   // WebSocket subscription for timer updates
   useSubscription(`/topic/board/${boardId}/timer`, message => {
-    const timerUpdate = JSON.parse(message.body) as TimerState;
+    const timerUpdate = JSON.parse(message.body) as TimerResponse;
     setTimerState(timerUpdate);
 
     if (timerUpdate.status === 'TIMER_COMPLETE') {
@@ -78,14 +79,12 @@ const Timer = ({ onTimerEnd }: TimerProps) => {
         {timerState.status !== 'NO_TIMER' && (
           <span className="text-xl font-semibold">{timerState.formattedTime}</span>
         )}
-
         <div className="space-x-2">
           {timerState.status === 'NO_TIMER' && !showDurationInput && (
             <button className="btn btn-primary btn-sm" onClick={handleStartTimer}>
               Start Timer
             </button>
           )}
-
           {showDurationInput && timerState.status === 'NO_TIMER' && (
             <div className="flex flex-col gap-1">
               <div className="join">
@@ -114,7 +113,6 @@ const Timer = ({ onTimerEnd }: TimerProps) => {
               <span className="text-xs text-gray-500">Enter between 2-60 minutes</span>
             </div>
           )}
-
           {timerState.status === 'TIMER_UPDATE' && (
             <button className="btn btn-error btn-sm" onClick={handleStopTimer}>
               Stop Timer

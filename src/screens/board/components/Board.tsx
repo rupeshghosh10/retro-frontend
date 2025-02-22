@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useSubscription } from 'react-stomp-hooks';
 import { useShallow } from 'zustand/shallow';
 import useBoardStore from '@/store/useBoardStore';
+import Snackbar from '../../../components/SnackBar';
 import Column from './Column';
-import Snackbar from './SnackBar';
 import Timer from './Timer';
 
 export interface CardContent {
@@ -14,7 +14,7 @@ export interface CardContent {
 const Board = () => {
   const [boardId, boardName] = useBoardStore(useShallow(x => [x.boardId, x.boardName]));
   const [cards, setCard] = useState<CardContent[]>([]);
-  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [showSnackbar, setShowSnackbar] = useState(true);
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
   useSubscription('/topic/messages', message => setCard(x => [...x, { text: message.body }]));
