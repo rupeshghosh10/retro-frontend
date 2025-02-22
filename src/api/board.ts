@@ -19,7 +19,7 @@ export const joinBoard = async (boardId: string, userName: string) => {
 };
 
 export const getBoard = async (boardId: string) => {
-  const response = await apiClient.post<BoardResponse>(`/api/board/${boardId}/details`);
+  const response = await apiClient.get<BoardResponse>(`/api/board/${boardId}/details`);
   return response.data;
 };
 

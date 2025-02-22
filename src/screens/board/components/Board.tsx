@@ -1,6 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { useParams } from 'react-router';
 import { useSubscription } from 'react-stomp-hooks';
-import { useShallow } from 'zustand/shallow';
+import { getBoard } from '@/api/board';
 import useBoardStore from '@/store/useBoardStore';
 import Snackbar from '../../../components/SnackBar';
 import Column from './Column';
@@ -12,10 +14,18 @@ export interface CardContent {
 }
 
 const Board = () => {
-  const [boardId, boardName] = useBoardStore(useShallow(x => [x.boardId, x.boardName]));
+  const [boardName] = useBoardStore(x => x.boardName);
   const [cards, setCard] = useState<CardContent[]>([]);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
+  const { boardId } = useParams();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['board'],
+    queryFn: () => getBoard(boardId ?? ''),
+  });
+
+  console.log(data, isLoading);
 
   useSubscription('/topic/messages', message => setCard(x => [...x, { text: message.body }]));
 
