@@ -35,10 +35,10 @@ const AddCard = ({ type, onAdd }: AddCardProps) => {
   };
 
   return (
-    <div className="rounded-lg border bg-primary-content px-2 pb-1 pt-3">
+    <div className="rounded-lg border bg-primary-content bg-opacity-80 px-2 pb-1 pt-3">
       <textarea
         placeholder="Type here"
-        className={`textarea min-h-14 w-full bg-primary-content p-2 leading-[1] ${getBorderColor()}`}
+        className={`textarea min-h-14 w-full bg-opacity-0 p-2 leading-[1] ${getBorderColor()}`}
         value={content}
         onChange={e => setContent(e.target.value)}
       />

@@ -3,7 +3,7 @@ import Board from './components/Board';
 
 const BoardScreen = () => {
   return (
-    <StompSessionProvider url={'http://localhost:8081/websocket'}>
+    <StompSessionProvider url={`${import.meta.env.VITE_API_BASE_URL}/websocket`}>
       <Board />
     </StompSessionProvider>
   );

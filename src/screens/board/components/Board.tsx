@@ -51,7 +51,7 @@ const Board = () => {
           </div>
           <Timer onTimerEnd={showTimerEndMessage} />
         </div>
-        <div className="flex h-[calc(100vh-8rem)] justify-between gap-4 pt-8">
+        <div className="flex h-[calc(100vh-9rem)] justify-between gap-4 pt-8">
           {columns.map(x => (
             <Column key={x.type} title={x.title} type={x.type} cards={cards} />
           ))}
