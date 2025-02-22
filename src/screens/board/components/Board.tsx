@@ -1,4 +1,3 @@
-// src/screens/board/components/Board.tsx
 import { useState } from 'react';
 import { useSubscription } from 'react-stomp-hooks';
 import { useShallow } from 'zustand/shallow';
