@@ -11,13 +11,13 @@ const AddCard = ({ type, onAdd }: AddCardProps) => {
   const getBorderColor = () => {
     switch (type) {
       case 'success':
-        return 'input-success';
+        return 'textarea-success';
       case 'error':
-        return 'input-error';
+        return 'textarea-error';
       case 'warning':
-        return 'input-warning';
+        return 'textarea-warning';
       case 'info':
-        return 'input-info';
+        return 'textarea-info';
     }
   };
 
@@ -36,15 +36,14 @@ const AddCard = ({ type, onAdd }: AddCardProps) => {
 
   return (
     <div className="rounded-lg border bg-primary-content px-2 pb-1 pt-3">
-      <input
-        type="text"
+      <textarea
         placeholder="Type here"
-        className={`input input-bordered w-full max-w-xs bg-white ${getBorderColor()}`}
+        className={`textarea min-h-14 w-full bg-primary-content p-2 leading-[1] ${getBorderColor()}`}
         value={content}
         onChange={e => setContent(e.target.value)}
       />
       <button
-        className={`btn btn-link btn-sm ml-auto mt-1 no-underline ${getBtnColor()}`}
+        className={`btn btn-link btn-sm ml-auto mr-1 mt-1 block self-start no-underline ${getBtnColor()}`}
         onClick={() => onAdd(content)}
       >
         Add
