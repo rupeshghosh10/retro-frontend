@@ -3,19 +3,12 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import { useSubscription } from 'react-stomp-hooks';
 import { getBoard } from '@/api/board';
-import useBoardStore from '@/store/useBoardStore';
 import Snackbar from '../../../components/SnackBar';
 import Column from './Column';
 import Timer from './Timer';
 
-export interface CardContent {
-  text: string;
-  user?: string;
-}
-
 const Board = () => {
-  const [boardName] = useBoardStore(x => x.boardName);
-  const [cards, setCard] = useState<CardContent[]>([]);
+  // const [cards, setCard] = useState<Card[]>([]);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const { boardId } = useParams();
@@ -25,9 +18,7 @@ const Board = () => {
     queryFn: () => getBoard(boardId ?? ''),
   });
 
-  console.log(data, isLoading);
-
-  useSubscription('/topic/messages', message => setCard(x => [...x, { text: message.body }]));
+  useSubscription(`/topic/board/${boardId}/messages`, message => console.log(message));
 
   const showTimerEndMessage = (message: string) => {
     setSnackbarMessage(message);
@@ -51,22 +42,33 @@ const Board = () => {
         isVisible={showSnackbar}
         onClose={() => setShowSnackbar(false)}
       />
-      <div className="h-full w-full">
-        <div className="flex items-center justify-between">
-          <div className="prose">
-            <h1>{boardName}</h1>
-            <p className="-mt-5 text-lg">
-              Board Code: <strong>{boardId}</strong>
-            </p>
+      {isLoading ? (
+        <div className="flex h-full w-full items-center justify-center">
+          <span className="loading loading-spinner w-14" />
+        </div>
+      ) : (
+        <div className="h-full w-full">
+          <div className="flex items-center justify-between">
+            <div className="prose">
+              <h1>{data?.boardName}</h1>
+              <p className="-mt-5 text-lg">
+                Board Code: <strong>{boardId}</strong>
+              </p>
+            </div>
+            <Timer onTimerEnd={showTimerEndMessage} />
           </div>
-          <Timer onTimerEnd={showTimerEndMessage} />
+          <div className="flex h-[calc(100vh-9rem)] justify-between gap-4 pt-8">
+            {columns.map(x => (
+              <Column
+                key={x.type}
+                title={x.title}
+                type={x.type}
+                cards={data?.cards.filter(y => y.columnType === x.type) ?? []}
+              />
+            ))}
+          </div>
         </div>
-        <div className="flex h-[calc(100vh-9rem)] justify-between gap-4 pt-8">
-          {columns.map(x => (
-            <Column key={x.type} title={x.title} type={x.type} cards={cards} />
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

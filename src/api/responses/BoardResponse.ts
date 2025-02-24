@@ -3,7 +3,7 @@ interface User {
   publicId: string;
 }
 
-interface Card {
+export interface Card {
   text: string;
   columnType: string;
   user: User;
