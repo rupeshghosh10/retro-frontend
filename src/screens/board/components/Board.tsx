@@ -1,24 +1,43 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useSubscription } from 'react-stomp-hooks';
 import { getBoard } from '@/api/board';
+import { Card } from '@/api/responses/BoardResponse';
 import Snackbar from '../../../components/SnackBar';
 import Column from './Column';
 import Timer from './Timer';
 
 const Board = () => {
-  // const [cards, setCard] = useState<Card[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const { boardId } = useParams();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isSuccess } = useQuery({
     queryKey: ['board'],
     queryFn: () => getBoard(boardId ?? ''),
   });
 
-  useSubscription(`/topic/board/messages`, message => console.log(message));
+  useEffect(() => {
+    if (isSuccess) {
+      setCards(data.cards);
+    }
+  }, [data?.cards, isSuccess]);
+
+  useSubscription(`/topic/board/${boardId}/messages`, message =>
+    setCards(x => [
+      ...x,
+      {
+        columnType: JSON.parse(message.body).columnType,
+        text: JSON.parse(message.body).cardContent,
+        user: {
+          name: 'New',
+          publicId: 'New',
+        },
+      },
+    ])
+  );
 
   const showTimerEndMessage = (message: string) => {
     setSnackbarMessage(message);
@@ -63,7 +82,7 @@ const Board = () => {
                 key={x.type}
                 title={x.title}
                 type={x.type}
-                cards={data?.cards.filter(y => y.columnType === x.type) ?? []}
+                cards={cards.filter(y => y.columnType === x.type) ?? []}
               />
             ))}
           </div>
