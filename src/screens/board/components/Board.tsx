@@ -18,7 +18,7 @@ const Board = () => {
     queryFn: () => getBoard(boardId ?? ''),
   });
 
-  useSubscription(`/topic/board/${boardId}/messages`, message => console.log(message));
+  useSubscription(`/topic/board/messages`, message => console.log(message));
 
   const showTimerEndMessage = (message: string) => {
     setSnackbarMessage(message);

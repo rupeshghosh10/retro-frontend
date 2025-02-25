@@ -1,4 +1,4 @@
-import { useShallow } from 'zustand/shallow';
+import { useParams } from 'react-router';
 import apiClient from '@/api/client/apiClient';
 import { Card as CardResponse } from '@/api/responses/BoardResponse';
 import useBoardStore from '@/store/useBoardStore';
@@ -12,7 +12,8 @@ interface ColumnProps {
 }
 
 const Column = ({ title, type, cards }: ColumnProps) => {
-  const [boardId, userName] = useBoardStore(useShallow(x => [x.boardId, x.username]));
+  const userName = useBoardStore(x => x.username);
+  const { boardId } = useParams();
 
   const handleAdd = async (content: string) => {
     await apiClient.post(
