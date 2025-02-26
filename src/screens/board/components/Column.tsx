@@ -1,5 +1,5 @@
 import { useParams } from 'react-router';
-import apiClient from '@/api/client/apiClient';
+import { addCard } from '@/api/board';
 import { Card as CardResponse } from '@/api/responses/BoardResponse';
 import useBoardStore from '@/store/useBoardStore';
 import AddCard from './AddCard';
@@ -16,19 +16,7 @@ const Column = ({ title, type, cards }: ColumnProps) => {
   const { boardId } = useParams();
 
   const handleAdd = async (content: string) => {
-    await apiClient.post(
-      `/api/board/${boardId}/note`,
-      {
-        cardContent: content,
-        columnType: type,
-      },
-      {
-        params: {
-          userName,
-          column: type,
-        },
-      }
-    );
+    await addCard(boardId!, content, type, userName);
   };
 
   const getBgColor = () => {

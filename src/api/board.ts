@@ -23,6 +23,14 @@ export const getBoard = async (boardId: string) => {
   return response.data;
 };
 
+export const addCard = async (boardId: string, content: string, type: string, userName: string) => {
+  await apiClient.post(
+    `/api/board/${boardId}/note`,
+    { cardContent: content, columnType: type },
+    { params: { userName, column: type } }
+  );
+};
+
 export const startTimer = async (
   boardId: string,
   durationMinutes: number
