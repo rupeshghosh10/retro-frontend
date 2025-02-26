@@ -1,7 +1,9 @@
 import { Bars3Icon, MoonIcon, SunIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { Link } from 'react-router';
+import { useShallow } from 'zustand/shallow';
 import RoutesEnum from '@/routes/routesEnum';
+import useBoardStore from '@/store/useBoardStore';
 
 interface NavbarProps {
   theme: string;
@@ -10,6 +12,7 @@ interface NavbarProps {
 
 const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [boardId, boardName] = useBoardStore(useShallow(x => [x.boardId, x.boardName]));
 
   const links = [
     {
@@ -51,6 +54,16 @@ const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
               </Link>
             </li>
           ))}
+          {boardId && (
+            <li>
+              <Link
+                to={RoutesEnum.Board.replace(':boardId', boardId)}
+                className="btn btn-ghost mr-auto flex w-full justify-start"
+              >
+                {boardName}
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="mt-auto hidden items-center justify-between px-3 pb-4 sm:flex">
